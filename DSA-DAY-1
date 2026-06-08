@@ -1,0 +1,26 @@
+// Day 1: LeetCode 2631 - Group By 
+// Problem : Enhance all arrays to include the .groupBy(fn) method 
+// language : JavaScript
+// which groups array items into an object based on the output of a callback function.
+
+/**
+ * @param {Function} fn
+ * @return {Object}
+ */
+Array.prototype.groupBy = function(fn) {
+    // object have created to store the grp sections
+    const groupedResult = {};
+
+    for (const item of this) {
+        const key = fn(item);
+        //key is theresult 
+
+        if (!groupedResult[key]) {
+            groupedResult[key] = [];
+        }
+
+        groupedResult[key].push(item);
+    }
+
+    return groupedResult; // return the final grouped result
+};
