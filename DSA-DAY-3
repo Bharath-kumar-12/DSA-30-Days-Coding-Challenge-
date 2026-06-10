@@ -1,0 +1,44 @@
+// Day 3: LeetCode 2722 - Function Composition
+// Language: JavaScript
+//
+// EXAMPLE 1
+//Input: 
+// arr1 = [
+    // {"id": 1, "x": 1},
+    // {"id": 2, "x": 9}
+// ], 
+// arr2 = [
+    // {"id": 3, "x": 5}
+// ]
+// Output: 
+// [
+    // {"id": 1, "x": 1},
+    // {"id": 2, "x": 9},
+    // {"id": 3, "x": 5}
+    // concept You are given two lists of objects, arr1 and arr2. Your goal is to combine them into one master list, matching items that share the exact same id.
+    // The resulting list should contain objects that have the same id, and their x values should be added together. If an id is present in only one of the lists, it should still be included in the final output with its original x value.
+
+/**
+ * @param {Array} arr1
+ * @param {Array} arr2
+ * @return {Array}
+ */
+// def a arr1 and arr2
+var join = function(arr1, arr2) { 
+    const resultMap = {};
+
+    //  Insert all items from the first array into the map
+    for (const item of arr1) {
+        resultMap[item.id] = item;
+    }
+
+    //Insert/Merge items from the second array
+    for (const item of arr2) {
+        if (resultMap[item.id]) {
+            resultMap[item.id] = { ...resultMap[item.id], ...item };
+        } else {
+            resultMap[item.id] = item;
+        }
+    }
+    return Object.values(resultMap).sort((a, b) => a.id - b.id);
+};
