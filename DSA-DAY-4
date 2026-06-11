@@ -1,0 +1,27 @@
+// Day 4: LeetCode 2723 - Add Two Promises
+// Language: JavaScript
+//
+// Core Concept:
+// We are given two promises are been call of prom 1 , prom 2
+// add their numbers together, and return a new promise with the sum.
+// using async/await syntax to handle the asynchronous nature of promises
+
+// EXAMPLE 1
+// Input: 
+// promise1 = new Promise(resolve => setTimeout(() => resolve(2), 20)), 
+// promise2 = new Promise(resolve => setTimeout(() => resolve(5), 60))
+
+// Output: 7
+
+/**
+ * @param {Promise} promise1
+ * @param {Promise} promise2
+ * @return {Promise}
+ */
+var addTwoPromises = async function(promise1, promise2) {
+    // Step 1: Wait for both promises to complete simultaneously
+    const [val1, val2] = await Promise.all([promise1, promise2]);
+    
+    // Step 2: Return the total sum
+    return val1 + val2;
+};
