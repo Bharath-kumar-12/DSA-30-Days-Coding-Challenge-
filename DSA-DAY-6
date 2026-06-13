@@ -1,0 +1,33 @@
+// Day 6: LeetCode 3838 - Weighted Word Mapping
+// Language: JavaScript
+
+/**
+ * @param {string[]} words
+ * @param {number[]} weights
+ * @return {string}
+ */
+var weightedWordMapping = function(words, weights) {
+    // A pre-made reversed alphabet makes the lookup incredibly easy to read
+    const reverseAlphabet = "zyxwvutsrqponmlkjihgfedcba";
+    let finalResult = "";
+
+    // Step 1: Loop through each individual word in the array
+    for (const word of words) {
+        let totalWeight = 0;
+
+        //Step 2: Calculate total weight by summing up each letter's score
+        for (let i = 0; i < word.length; i++) {
+            const letterIndex = word.charCodeAt(i) - 97; // 'a' -> 0, 'b' -> 1...
+            totalWeight += weights[letterIndex];
+        }
+
+        // Take the modulo 26 of the total weight
+        const remainder = totalWeight % 26;
+
+        //Find the matching character and add it to our secret word
+        finalResult += reverseAlphabet[remainder];
+    }
+
+    // Step 5: Output the completed string
+    return finalResult;
+};
