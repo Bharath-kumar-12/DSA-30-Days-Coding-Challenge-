@@ -9,10 +9,10 @@
 
 // Explanation
 
-//1. You load a starting item into the scanner: expect(5)
+// 1. You load a starting item into the scanner: expect(5)
 // 2. The scanner hands you a mini toolbox with two buttons: .toBe() and .notToBe()
 // 3. You press a button to test your item against a target value:
-//
+// 
 // Errors:
 // In JavaScript, 'throw new Error("message")' is used to intentionally stop execution
 // and flag a failure when code doesn't behave as expected.
@@ -21,19 +21,19 @@
  * @param {string} val
  * @return {Object}
  */
-var expect = function(val) {
+var expect = function (val) {
     return {
         // Method 1: Check if two values are strictly equal
-        toBe: function(otherVal) {
+        toBe: function (otherVal) {
             if (val === otherVal) {
                 return true;
             } else {
                 throw new Error("Not Equal");
             }
         },
-        
+
         // Method 2: Check if two values are NOT equal
-        notToBe: function(otherVal) {
+        notToBe: function (otherVal) {
             if (val !== otherVal) {
                 return true;
             } else {
