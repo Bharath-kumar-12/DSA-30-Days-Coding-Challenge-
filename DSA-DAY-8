@@ -1,0 +1,34 @@
+// Day 8: LeetCode 2725 - Interval Cancellation
+// Language: JavaScript
+// Example 1:
+// Input: fn = (x) => x * 2, args = [4], t = 35
+// Output: 
+// [
+//    {"time": 0, "returned": 8},
+//    {"time": 35, "returned": 8},
+//    {"time": 70, "returned": 8},
+//    {"time": 105, "returned": 8},
+//    {"time": 140, "returned": 8},
+//    {"time": 175, "returned": 8}
+// ]
+
+/**
+ * @param {Function} fn
+ * @param {Array} args
+ * @param {number} t
+ * @return {Function}
+ */
+var cancellable = function (fn, args, t) {
+    // Step 1: Execute the function immediately with its arguments at 0ms
+    fn(...args);
+
+    // Step 2: Set up a recurring interval to execute the function every 't' milliseconds
+    const timerId = setInterval(() => {
+        fn(...args);
+    }, t);
+
+    // Step 3: Return a function that cancels the interval using its unique ID
+    return function () {
+        clearInterval(timerId);
+    };
+};
